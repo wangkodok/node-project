@@ -9,6 +9,10 @@ app.get("/", (req, res) => {
   res.render("start");
 });
 
+app.get("/intro", (req, res) => {
+  res.render("intro");
+});
+
 app.listen(3000, () => {
   console.log("on post 3000");
   console.log("http://localhost:3000/");
