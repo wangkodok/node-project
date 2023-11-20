@@ -3,6 +3,14 @@
   <%- include('head.ejs') %>
   <body>
     <h1>Node 기반 웹 사이트</h1>
+    <ul>
+      <% for(const dataResult of data) { %>
+      <li>
+        <%= dataResult.language %> - Lv <%= dataResult.lv =
+        Math.floor(Math.random() * 10 + 1) %>
+      </li>
+      <% } %>
+    </ul>
     <a href="/intro">소개</a>
   </body>
 </html>
