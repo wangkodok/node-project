@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/wangkodok/node-project/issues"
   },
-  "homepage": "https://github.com/wangkodok/node-project#readme"
+  "homepage": "https://github.com/wangkodok/node-project#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }
