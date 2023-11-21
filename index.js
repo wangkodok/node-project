@@ -1,6 +1,7 @@
 const express = require("express");
 const app = express();
 const path = require("path");
+const { v4: uuid } = require("uuid");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
@@ -9,22 +10,22 @@ app.set("view engine", "ejs");
 
 const data = [
   {
-    id: 1,
+    id: uuid(),
     language: "JavaScript",
     lv: null,
   },
   {
-    id: 2,
+    id: uuid(),
     language: "Node",
     lv: null,
   },
   {
-    id: 3,
+    id: uuid(),
     language: "React",
     lv: null,
   },
   {
-    id: 4,
+    id: uuid(),
     language: "TypeScript",
     lv: null,
   },
@@ -44,7 +45,7 @@ app.get("/new", (req, res) => {
 
 app.post("/", (req, res) => {
   const { language } = req.body;
-  data.push({ language });
+  data.push({ language, id: uuid() });
   // res.send("work");
   res.redirect("/");
 });
@@ -52,7 +53,7 @@ app.post("/", (req, res) => {
 app.get("/language/:id", (req, res) => {
   const { id } = req.params;
   const dataResult = data.find((element) => {
-    return element.id === parseInt(id);
+    return element.id === id;
   });
   res.render("language", { dataResult });
 });
