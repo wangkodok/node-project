@@ -9,18 +9,22 @@ app.set("view engine", "ejs");
 
 const data = [
   {
+    id: 1,
     language: "JavaScript",
     lv: null,
   },
   {
+    id: 2,
     language: "Node",
     lv: null,
   },
   {
+    id: 3,
     language: "React",
     lv: null,
   },
   {
+    id: 4,
     language: "TypeScript",
     lv: null,
   },
@@ -43,6 +47,14 @@ app.post("/", (req, res) => {
   data.push({ language });
   // res.send("work");
   res.redirect("/");
+});
+
+app.get("/language/:id", (req, res) => {
+  const { id } = req.params;
+  const dataResult = data.find((element) => {
+    return element.id === parseInt(id);
+  });
+  res.render("language", { dataResult });
 });
 
 app.listen(3000, () => {
