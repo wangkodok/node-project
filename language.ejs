@@ -9,5 +9,8 @@
     <h1>언어: <%= dataResult.language %></h1>
     <a href="/">Home</a>
     <a href="/language/<%= dataResult.id %>/edit">edit</a>
+    <form action="/language/<%= dataResult.id %>/?_method=DELETE" method="post">
+      <button>삭제</button>
+    </form>
   </body>
 </html>

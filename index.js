@@ -10,7 +10,7 @@ app.use(methodOverride("_method"));
 app.set("views", path.join(__dirname, "/"));
 app.set("view engine", "ejs");
 
-const data = [
+let data = [
   {
     id: uuid(),
     language: "JavaScript",
@@ -77,6 +77,14 @@ app.patch("/language/:id", (req, res) => {
   dataResult.language = languageChange;
   res.redirect("/");
   // res.redirect(`/language/${dataResult.id}`);
+});
+
+app.delete("/language/:id", (req, res) => {
+  const { id } = req.params;
+  data = data.filter((element) => {
+    return element.id !== id;
+  });
+  res.redirect("/");
 });
 
 app.listen(3000, () => {
