@@ -1,10 +1,12 @@
 const express = require("express");
 const app = express();
 const path = require("path");
+const methodOverride = require("method-override");
 const { v4: uuid } = require("uuid");
 
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use(methodOverride("_method"));
 app.set("views", path.join(__dirname, "/"));
 app.set("view engine", "ejs");
 
@@ -56,6 +58,25 @@ app.get("/language/:id", (req, res) => {
     return element.id === id;
   });
   res.render("language", { dataResult });
+});
+
+app.get("/language/:id/edit", (req, res) => {
+  const { id } = req.params;
+  const dataResult = data.find((element) => {
+    return element.id === id;
+  });
+  res.render("edit", { dataResult });
+});
+
+app.patch("/language/:id", (req, res) => {
+  const { id } = req.params;
+  const languageChange = req.body.language;
+  const dataResult = data.find((element) => {
+    return element.id === id;
+  });
+  dataResult.language = languageChange;
+  res.redirect("/");
+  // res.redirect(`/language/${dataResult.id}`);
 });
 
 app.listen(3000, () => {

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>글 편집하기</h1>
+    <form action="/language/<%= dataResult.id %>?_method=PATCH" method="post">
+      <label for="language">언어</label>
+      <input
+        type="text"
+        name="language"
+        id="language"
+        value="<%= dataResult.language %>"
+      />
+      <button>저장</button>
+    </form>
+  </body>
+</html>
