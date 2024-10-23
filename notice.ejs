@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/app.css" />
+    <title>게시판</title>
+  </head>
+  <body>
+    <table style="width: 100%">
+      <caption>
+        게시판
+      </caption>
+      <thead>
+        <tr>
+          <th>No</th>
+          <th>제목</th>
+          <th>글쓴이</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% notices.forEach((notice, noticeIndex) => { %>
+        <tr>
+          <td><%= noticeIndex + 1 %></td>
+          <td>
+            <a href="/notice/<%= notice.id %>">테스트</a>
+          </td>
+          <td><%= notice.name %></td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+    <a href="/notice/desc">글 작성</a>
+  </body>
+</html>

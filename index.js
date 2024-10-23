@@ -7,6 +7,7 @@ const { v4: uuid } = require("uuid");
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(methodOverride("_method"));
+app.use("/", express.static(__dirname + "/"));
 app.set("views", path.join(__dirname, "/"));
 app.set("view engine", "ejs");
 
@@ -33,6 +34,21 @@ let data = [
   },
 ];
 
+let notices = [
+  {
+    id: uuid(),
+    name: "홍길동",
+  },
+  {
+    id: uuid(),
+    name: "홍길순",
+  },
+  {
+    id: uuid(),
+    name: "홍길자",
+  },
+];
+
 app.get("/", (req, res) => {
   res.render("start", { data });
 });
@@ -43,6 +59,22 @@ app.get("/intro", (req, res) => {
 
 app.get("/new", (req, res) => {
   res.render("new");
+});
+
+app.get("/notice", (req, res) => {
+  res.render("notice", { notices });
+});
+
+app.get("/notice/desc", (req, res) => {
+  res.render("desc");
+});
+
+app.get("/notice/:id", (req, res) => {
+  const { id } = req.params;
+  const dataResult = notices.find((element) => {
+    return element.id === id;
+  });
+  res.render("writing", { dataResult });
 });
 
 app.post("/", (req, res) => {
